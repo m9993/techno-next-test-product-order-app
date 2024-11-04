@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Product Order",
+    "slug": "product-order",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "src/assets/images/branding/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "src/assets/images/branding/splash.png",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "buildNumber": "1",
+      "bundleIdentifier": "",
+      "icon": "src/assets/images/branding/icon.png"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "src/assets/images/branding/icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "",
+      "versionCode": 1
+    },
+    "androidStatusBar": {
+      "hidden": true,
+      "translucent": true
+    },
+    "web": {
+      "favicon": "src/assets/images/branding/favicon.png"
+    },
+    "plugins": [
+      ["expo-localization", {}],
+      "expo-font"      
+    ]
+    
+  }
+}
