@@ -14,16 +14,24 @@
     "ios": {
       "supportsTablet": true,
       "buildNumber": "1",
-      "bundleIdentifier": "",
-      "icon": "src/assets/images/branding/icon.png"
+      "bundleIdentifier": "com.product.order",
+      "icon": "src/assets/images/branding/icon.png",
+      "config": {
+        "googleMapsApiKey": ""
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "src/assets/images/branding/icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "",
-      "versionCode": 1
+      "package": "com.product.order",
+      "versionCode": 1,
+      "config": {
+        "googleMaps": {
+          "apiKey": ""
+        }
+      }
     },
     "androidStatusBar": {
       "hidden": true,
@@ -34,8 +42,13 @@
     },
     "plugins": [
       ["expo-localization", {}],
-      "expo-font"      
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
     ]
-    
   }
 }

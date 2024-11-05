@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isDrawerOpen: false,
   isDarkTheme: false,
-  // isDarkTheme: true,
+  currentLocation: { latitude: null, longitude: null, address: null },
 };
 
 export const appSlice = createSlice({
@@ -13,11 +12,13 @@ export const appSlice = createSlice({
     toggleAppTheme: state => {
       state.isDarkTheme = !state.isDarkTheme;
     },
-    toggleDrawer: state => {
-      state.isDrawerOpen = !state.isDrawerOpen;
+    setCurrentLocation: (state, { payload }) => {
+      state.currentLocation.latitude = payload.latitude;
+      state.currentLocation.longitude = payload.longitude;
+      state.currentLocation.address = payload.address;
     },
   },
 });
 
-export const { toggleAppTheme, toggleDrawer } = appSlice.actions;
+export const { toggleAppTheme, setCurrentLocation } = appSlice.actions;
 export default appSlice.reducer;
