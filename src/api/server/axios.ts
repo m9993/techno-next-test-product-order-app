@@ -1,6 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { flashMessage } from '@services';
-import { checkInternetConnection } from '@utils';
 import axios from 'axios';
 import { config } from '../../config';
 
@@ -11,7 +9,7 @@ const instance = axios.create({
   },
 });
 
-instance.interceptors.request.use(
+/* instance.interceptors.request.use(
   async config => {
     const isConnected = await checkInternetConnection();
     if (!isConnected) flashMessage.danger({ message: 'No internet connection!' });
@@ -36,7 +34,7 @@ instance.interceptors.response.use(
     return err.response;
   },
 );
-
+ */
 /* 
 instance.interceptors.response.use(
   res => res,
