@@ -9,6 +9,7 @@ import { Logo } from 'src/assets/svg/logo';
 import ScreenWrapperComponent from 'src/components/wrappers/screen-wraper-component';
 import { useAppDispatch } from 'src/store/hooks';
 import { setCurrentLocation } from 'src/store/slices/app-slice';
+import { initCart } from 'src/store/slices/cart-slice';
 
 export default function AppLoadingScreen() {
   const navigation = useAppNavigation();
@@ -17,6 +18,7 @@ export default function AppLoadingScreen() {
   useEffect(() => {
     (async () => {
       await updateLocation();
+      dispatch(initCart());
       navigation.navigate('BottomTab', { screen: 'HomeScreen' });
     })();
   }, []);

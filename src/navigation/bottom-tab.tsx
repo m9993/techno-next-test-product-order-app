@@ -5,7 +5,6 @@ import React from 'react';
 import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import i18n from 'src/languages/i18n';
 import CartScreen from 'src/screens/tabs/cart-screen';
-import HistoryScreen from 'src/screens/tabs/history-screen';
 import HomeScreen from 'src/screens/tabs/home-screen';
 import MapScreen from 'src/screens/tabs/map-screen';
 import { useAppSelector } from 'src/store/hooks';
@@ -38,12 +37,6 @@ export default function BottomTab() {
     //   tabBarLabel: '',
     //   tabBarIcon: ({ color }: Iicon) => <Add color={color} />,
     // },
-    {
-      name: 'HistoryScreen',
-      component: HistoryScreen,
-      tabBarLabel: i18n.t('History'),
-      tabBarIcon: ({ color }: Iicon) => <Feather name="clock" size={20} color={color} />,
-    },
     {
       name: 'CartScreen',
       component: CartScreen,
