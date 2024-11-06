@@ -75,6 +75,6 @@ Start the server
 ```
 
 After running Metro Bundler
-- If you are usuing android emulator then press a (open Android) to run the app.
-- Or if you are usuing physical device then download Expo Go app, then scan the QR code to run the app.
+- If you are using android emulator then press a (open Android) to run the app.
+- Or if you are using physical device then download Expo Go app, then scan the QR code to run the app.
 
