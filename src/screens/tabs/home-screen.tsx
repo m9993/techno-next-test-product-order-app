@@ -1,9 +1,11 @@
 import { useAppNavigation } from '@navigation';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { getProductsByLimitSort } from '@react-query';
 import { colors, commonStyles, textStyles } from '@theme';
 import React, { useState } from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ProductCardComponent from 'src/components/cards/product-card-component';
+import NoNetwork from 'src/components/common/no-network';
 import HeaderComponent from 'src/components/headers/header-component';
 import ScreenWrapperComponent from 'src/components/wrappers/screen-wraper-component';
 import { useAppSelector } from 'src/store/hooks';
@@ -12,11 +14,14 @@ export default function HomeScreen() {
   const { isDarkTheme } = useAppSelector(s => s.app);
   const navigation = useAppNavigation();
   const [sort, setSort] = useState<'asc' | 'desc'>('asc');
-  const { data, isLoading, refetch } = getProductsByLimitSort(10, sort);
+  const { data, isLoading, isFetching, refetch } = getProductsByLimitSort(10, sort);
+  const { isConnected } = useNetInfo();
 
   return (
     <ScreenWrapperComponent scrollable={false}>
       <HeaderComponent title="Home" />
+      {!isConnected && <NoNetwork isLoading={isFetching} onPress={refetch} />}
+
       <View style={[commonStyles.rowSpaceBetween, { paddingHorizontal: 16 }]}>
         <Text style={[textStyles.poppinsSemiBold24, { color: colors.light.black }]}>Products</Text>
         <View style={[commonStyles.rowStart, { gap: 5 }]}>
