@@ -27,3 +27,13 @@ export const getProductsByLimitSort = (limit: number, sort: 'asc' | 'desc') => {
     },
   });
 };
+
+export const getProductDetailsById = (id: number) => {
+  return useQuery({
+    queryKey: ['get-products-details', id],
+    queryFn: async () => {
+      const res = await server.product.getProductDetailsById(id);
+      return res.data;
+    },
+  });
+};

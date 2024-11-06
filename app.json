@@ -3,7 +3,7 @@
     "name": "Product Order",
     "slug": "product-order",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "auto",
     "icon": "src/assets/images/branding/icon.png",
     "userInterfaceStyle": "light",
     "splash": {

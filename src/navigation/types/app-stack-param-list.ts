@@ -1,3 +1,3 @@
 export type AppStackParamList = {
-  t: undefined;
+  ProductDetailsScreen: { id: number };
 };

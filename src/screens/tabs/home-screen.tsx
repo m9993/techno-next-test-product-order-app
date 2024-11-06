@@ -2,7 +2,8 @@ import { useAppNavigation } from '@navigation';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { getProductsByLimitSort } from '@react-query';
 import { colors, commonStyles, textStyles } from '@theme';
-import React, { useState } from 'react';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ProductCardComponent from 'src/components/cards/product-card-component';
 import NoNetwork from 'src/components/common/no-network';
@@ -13,14 +14,30 @@ import { useAppSelector } from 'src/store/hooks';
 export default function HomeScreen() {
   const { isDarkTheme } = useAppSelector(s => s.app);
   const navigation = useAppNavigation();
+  const [dateTime, setDateTime] = useState(moment().format('MMMM Do YYYY, h:mm:ss a'));
   const [sort, setSort] = useState<'asc' | 'desc'>('asc');
   const { data, isLoading, isFetching, refetch } = getProductsByLimitSort(10, sort);
   const { isConnected } = useNetInfo();
+
+  useEffect(() => {
+    const updateTime = setInterval(() => {
+      setDateTime(moment().format('MMMM Do YYYY, h:mm:ss a'));
+    }, 20000);
+
+    return () => {
+      clearInterval(updateTime);
+    };
+  }, []);
 
   return (
     <ScreenWrapperComponent scrollable={false}>
       <HeaderComponent title="Home" />
       {!isConnected && <NoNetwork isLoading={isFetching} onPress={refetch} />}
+
+      <Text
+        style={[textStyles.poppinsRegular14, { color: colors.light.black, paddingHorizontal: 16 }]}>
+        {dateTime}
+      </Text>
 
       <View style={[commonStyles.rowSpaceBetween, { paddingHorizontal: 16 }]}>
         <Text style={[textStyles.poppinsSemiBold24, { color: colors.light.black }]}>Products</Text>
@@ -60,7 +77,14 @@ export default function HomeScreen() {
           )
         }
         renderItem={({ item: product }) => (
-          <TouchableOpacity activeOpacity={0.8}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() =>
+              navigation.navigate('AppStack', {
+                screen: 'ProductDetailsScreen',
+                params: { id: product.id },
+              })
+            }>
             <ProductCardComponent
               id={product.id}
               title={product.title}
@@ -82,7 +106,7 @@ const styles = StyleSheet.create({
     color: colors.light.white,
     textAlign: 'center',
     textAlignVertical: 'center',
-    backgroundColor: colors.light.blue,
+    backgroundColor: colors.light.primary,
     width: 50,
     height: 25,
     borderRadius: 4,
